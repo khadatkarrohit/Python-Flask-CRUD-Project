@@ -1,6 +1,8 @@
-# Python-Flask-CRUD-Project
+# Python-Flask-CRUD-Project with MySQL Database
 
-MySQL table query for crud operation. 
+## MySQL connection information
+
+###### Create table query:
 
 CREATE TABLE employee_details (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -12,3 +14,21 @@ CREATE TABLE employee_details (
   `email` VARCHAR(200) NOT NULL,
   `active` TINYINT(1) NULL DEFAULT '1',
   PRIMARY KEY (`id`));
+
+###### MySQL Connection Parameter as per your local database setup: 
+
+mydb = mysql.connector.connect(
+    host="localhost",
+    port="3309",
+    user="root",
+    passwd="root",
+    database="crud_project"
+ )
+ 
+ ###### Install Below Python packages
+ 
+ pip install flask,
+ pip install mysql
+ 
+ 
+ 
