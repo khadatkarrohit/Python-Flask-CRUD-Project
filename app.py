@@ -17,7 +17,7 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'  # Set the secret key to some random by
 
 @app.route('/')
 def Index():
-    sql = "SELECT * FROM employee_details"
+    sql = "SELECT * FROM employee_details where active = 1"
     cursor.execute(sql)
     data = cursor.fetchall()
     return render_template('index.html', students=data)
@@ -35,6 +35,15 @@ def insert():
         cursor.execute(sql, val)
         mydb.commit()
         return redirect(url_for('Index'))
+
+@app.route('/delete/<string:id_data>', methods = ['GET'])
+def delete(id_data):
+    flash("Record Has Been Deleted Successfully")
+    sql = "update employee_details SET active = %s where id = %s"
+    val = (0, id_data)
+    cursor.execute(sql, val)
+    mydb.commit()
+    return redirect(url_for('Index'))
 
 if __name__ == "__main__":
     app.run(debug=True)
