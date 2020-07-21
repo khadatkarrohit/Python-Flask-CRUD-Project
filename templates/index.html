@@ -52,7 +52,7 @@
                     <h4 class="modal-title">Please Insert Data</h4>
                  </div>
                  <div class="modal-body">
-                    <form action="" method="POST">
+                    <form action="{{ url_for('insert') }}" method="POST">
                        <div class="form-group">
                           <label>First Name:</label>
                           <input type="text" class="form-control" name="firstname" required="1">
