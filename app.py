@@ -38,12 +38,27 @@ def insert():
 
 @app.route('/delete/<string:id_data>', methods = ['GET'])
 def delete(id_data):
-    flash("Record Has Been Deleted Successfully")
     sql = "update employee_details SET active = %s where id = %s"
     val = (0, id_data)
     cursor.execute(sql, val)
     mydb.commit()
     return redirect(url_for('Index'))
+
+@app.route('/update',methods=['POST','GET'])
+def update():
+    if request.method == 'POST':
+        id_data = request.form['id']
+        fname = request.form['firstname']
+        lname = request.form['lastname']
+        email = request.form['email']
+        designation = request.form['designation']
+        total_exp = request.form['total_exp']
+        sql = "update employee_details SET first_name = %s, last_name = %s, designation = %s, total_experiance = %s, email = %s where id = %s"
+        val = (fname, lname, designation, total_exp, email, id_data)
+        cursor.execute(sql, val)
+        mydb.commit()
+        return redirect(url_for('Index'))
+
 
 if __name__ == "__main__":
     app.run(debug=True)
